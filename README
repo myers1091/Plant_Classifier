@@ -1,0 +1,5 @@
+image_classifier.py takes images from output and feeds them into the a cnn
+
+splitter.py splits the data into the correct format
+
+
