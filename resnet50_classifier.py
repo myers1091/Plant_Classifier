@@ -1,12 +1,22 @@
 # Importing the Keras libraries and packages
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator 
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense
+from keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, AveragePooling2D, MaxPooling2D, GlobalMaxPooling2D
+from keras.models import Model, load_model
+from keras.preprocessing import image
+from keras.utils import layer_utils
+from keras.utils.data_utils import get_file
+from keras.applications.imagenet_utils import preprocess_input
+import pydot
+from IPython.display import SVG
+from keras.utils.vis_utils import model_to_dot
+from keras.utils import plot_model
+#from resnets_utils import *
+from keras.initializers import glorot_uniform
+import scipy.misc
+from matplotlib.pyplot import imshow
 from keras import backend as K
-from keras.callbacks import EarlyStopping, TensorBoard
+from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint
 import datetime
 """
 Code Blocks taken from Priyanka Dwivedi:
@@ -220,12 +230,12 @@ early_stopping_monitor = EarlyStopping(patience=2)
 filepath = '/Users/john/Documents/DataSci/Leaves/weights/weights-{epoch:02d}-{loss:.4f}.h5'
 checkpoint = ModelCheckpoint(filepath, monitor = 'loss', verbose = 1, save_best_only = True, mode = 'min')
 
-classifier.fit_generator(training_set,steps_per_epoch = 6109,
-epochs = 5,
+model.fit_generator(training_set,steps_per_epoch = 6109,
+epochs = 25,
 validation_data = test_set,
 validation_steps = 693,
 callbacks=[tensorboard_callback,early_stopping_monitor,checkpoint])
-classifier.save_weights('/Users/john/Documents/DataSci/Leaves/model_saved.h5') 
+
 
 
 import numpy as np
