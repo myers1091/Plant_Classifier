@@ -17,9 +17,6 @@ if K.image_data_format() == 'channels_first':
 else:
     input_shape = (img_width, img_height, 3)
 
-early_stopping_monitor = EarlyStopping(patience=2)
-dense_layers=[1,2,3,4,5,6]
-n_nodes=[10, 50, 100, 150, 200, 250]
 
 classifier = Sequential()
 classifier.add(Conv2D(32,(3,3),input_shape = input_shape,activation = 'relu'))
