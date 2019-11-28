@@ -1,5 +1,24 @@
-image_classifier.py takes images from output and feeds them into the a cnn
+split.py
+python3 split.py --input <input directory> --output "new output directory" --ratio "train %, validation %, test %" 
+splits the data into 3 directories with a given ratio
+must include in/out directory and ratio
+outdirectory is made on excecution
 
-splitter.py splits the data into the correct format
 
 
+resnet50_classifier.py
+python3 resnet50_classifier.py
+Main script
+runs resnet50 classifier 
+
+ResNet.py
+file containing renet50 definitions and constructor
+
+
+
+tester.py
+python3 tester.py 
+basic testing script that takes an image and gives output
+need to have better way (case switch) to display output
+
+Need to find way to convert images into .h5 file
