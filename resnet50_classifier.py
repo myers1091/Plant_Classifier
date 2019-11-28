@@ -69,7 +69,7 @@ early_stopping_monitor = EarlyStopping(monitor='val_loss', mode='min',patience=2
 #define the checkpoint
 filepath = './weights/weights-{epoch:02d}-{loss:.4f}_2.h5'
 checkpoint = ModelCheckpoint(filepath, monitor = 'loss', verbose = 1, save_best_only = True, mode = 'min')
-
+#need to change this from hard coded to dynamic
 model.fit_generator(training_set,steps_per_epoch = 6109,
 epochs = 25,
 validation_data = test_set,
