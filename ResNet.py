@@ -15,6 +15,7 @@ from keras.initializers import glorot_uniform
 import scipy.misc
 from matplotlib.pyplot import imshow 
 from keras import backend as K
+import h5py
 
 """
 Code Blocks taken from Priyanka Dwivedi:
@@ -190,3 +191,21 @@ def ResNet50(input_shape=(64, 64, 3), classes=6):
     model = Model(inputs = X_input, outputs = X, name='ResNet50')
 
     return model
+
+def load_dataset(hdf5_path,subtract_mean = 0):
+    subtract_mean = False
+    # open the hdf5 file
+    hdf5_file = h5py.File(hdf5_path, "r")
+    # subtract the training mean
+    if subtract_mean:
+        mm = hdf5_file["train_mean"][0, ...]
+        mm = mm[np.newaxis, ...]
+    # Total number of samples
+    data_num = hdf5_file["train_img"].shape[0]
+    nb_class = (max(hdf5_file["train_labels"]) + 1)
+    data_shape = hdf5_file["train_img"].shape
+    X_train = hdf5_file["train_img"]
+    y_train = hdf5_file["train_labels"]
+    X_val   = hdf5_file["val_img"]
+    y_val   = hdf5_file["val_labels"]
+    return X_train, y_train, X_val, y_val, data_shape,nb_class
