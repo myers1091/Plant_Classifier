@@ -21,4 +21,5 @@ python3 tester.py
 basic testing script that takes an image and gives output
 need to have better way (case switch) to display output
 
-Need to find way to convert images into .h5 file
+process_images.py 
+Takes the images in the directories outputted by split.py and creates hdf5 dataset.
